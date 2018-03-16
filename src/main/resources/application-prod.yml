@@ -1,0 +1,8 @@
+#product environment
+#server.port=8080
+#using a custom configuration ,girl
+server:
+  port: 8080
+girl:
+ cupSize: F
+ age: 20
