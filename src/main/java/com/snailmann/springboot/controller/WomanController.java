@@ -4,8 +4,10 @@ import com.snailmann.springboot.dao.WomanRepository;
 import com.snailmann.springboot.entity.Woman;
 import com.snailmann.springboot.service.WomanService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,17 +59,22 @@ public class WomanController {
         return womanRepository.findByAge(age);
     }
 
+
     /**
      * insert a woman
-     * @param cupSize
-     * @param age
+     * @param woman   it will be transmit a Woman object
+     * @param bindingResult  it is the result of validation
      * @return
      */
     @PostMapping("/insert")
-    public Woman addWoman(String cupSize,Integer age){
-        Woman woman=new Woman();
-        woman.setAge(age);
-        woman.setCupSize(cupSize);
+    public Woman addWoman(@Valid Woman woman, BindingResult bindingResult){
+        //if the verification is not passed , it will output the message that be defined in Woman Class
+        if(bindingResult.hasErrors()){
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+            return null;
+        }
+        woman.setAge(woman.getAge());
+        woman.setCupSize(woman.getCupSize());
 
         return womanRepository.save(woman);
     }

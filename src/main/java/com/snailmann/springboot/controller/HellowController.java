@@ -1,6 +1,6 @@
 package com.snailmann.springboot.controller;
 
-import com.snailmann.springboot.entity.Girl;
+import com.snailmann.springboot.properties.GirlProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HellowController {
 
     @Autowired
-    private Girl girl = new Girl();
+    private GirlProperties girl = new GirlProperties();
 
     /**
      * introduce how to use arrays of url

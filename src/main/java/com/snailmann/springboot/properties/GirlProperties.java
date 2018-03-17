@@ -1,20 +1,20 @@
-package com.snailmann.springboot.entity;
+package com.snailmann.springboot.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
  * define a config and it prefix is "girl"
- * it can find the application about Girl class in application-dev.yml
+ * it can find the application of GirlProperties class in application-dev.yml
  * it need a constructor without params(not sure)
  */
 @Component
 @ConfigurationProperties(prefix = "girl")
-public class Girl {
+public class GirlProperties {
     private String cupSize;
     private Integer age;
 
-    public Girl() {
+    public GirlProperties() {
 
     }
 
