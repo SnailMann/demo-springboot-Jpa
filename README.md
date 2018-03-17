@@ -17,6 +17,7 @@
 - 如何获取application.yml配置中的值
 - 如何配置多环境下的配置
 - 搭建Springboot、Spring Data Jpa、MySQL项目
+- Spring声明式事务的使用
 
 
 **环境**
@@ -28,6 +29,10 @@
 **学习网站**
 
 - [慕课网-2小时学会Springboot](https://www.imooc.com/learn/767)
+
+**注意**
+
+- Post、Put、Delete请求可以用Chrome插件**Postman**去模拟。
 
 ##Enligsh
 ----
@@ -51,7 +56,12 @@
 - How to fetch value from configuration files.
 - How to configure multi-environment configuration.
 - How to build a project combines Springboot,Spring Data Jpa and Mysql.
+- Learn to use Spring transaction  
 
 **Learn Site**
 
 - [Imooc-Two hours to finish Springboot](https://www.imooc.com/learn/767)
+
+**Remark**
+
+- You can use the Google plugin **Postman** to simulate Post,Put and Delete requests
