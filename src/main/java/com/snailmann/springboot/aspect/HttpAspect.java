@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * learn to using AOP characteristic
  * achieve log function by AOP way
+ * @Aspect is a way of aop annotation
  */
 @Aspect
 @Component
