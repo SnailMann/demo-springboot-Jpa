@@ -42,16 +42,17 @@ public class WomanService {
      * learn to using Exception to feedback message
      * @param id
      */
-    public void getAge(Integer id) throws Exception{
+    public Integer getAge(Integer id) throws Exception{
         Woman woman = womanRepository.findById(id).get();
         Integer age = woman.getAge();
         if (age < 10) {
             //return "Maybe you still in primary school"
             throw new WomanException(ResultEnum.PRIMARY_SHCOOL);//errorCode:100
-        } else if (age > 10 && age < 16) {
+        } else if (age > 10 && age < 17) {
             //return "Maybe you still in junior high school"
             throw new WomanException(ResultEnum.HIGN_SCHOOL);//errorCode:101
         }
         //other operation...etc
+        return age;
     }
 }
