@@ -1,8 +1,10 @@
 package com.snailmann.springboot.controller;
 
 import com.snailmann.springboot.dao.WomanRepository;
+import com.snailmann.springboot.entity.Result;
 import com.snailmann.springboot.entity.Woman;
 import com.snailmann.springboot.service.WomanService;
+import com.snailmann.springboot.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +32,8 @@ public class WomanController {
      * select all woman
      * @return
      */
-    @GetMapping("/findwoman")
-    public List<Woman> womanList() {
+    @GetMapping("/findwoman/all")
+    public List<Woman> findWomans() {
 
         return womanRepository.findAll();
     }
@@ -67,28 +69,28 @@ public class WomanController {
      * @return
      */
     @PostMapping("/insert")
-    public Woman addWoman(@Valid Woman woman, BindingResult bindingResult){
+    public Result addWoman(@Valid Woman woman, BindingResult bindingResult){
         //if the verification is not passed , it will output the message that be defined in Woman Class
         if(bindingResult.hasErrors()){
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
-            return null;
+            return ResultUtils.error(1,bindingResult.getFieldError().getDefaultMessage());//error
+            //return null; //test system error refer to ExceptionHandle
         }
+
+        //if the verfication is passed
         woman.setAge(woman.getAge());
         woman.setCupSize(woman.getCupSize());
 
-        return womanRepository.save(woman);
+        return ResultUtils.success(womanRepository.save(woman));//success
     }
 
     /**
      * insert two sql at the same time
      * test transaction management  @Transactional
      */
-    @PostMapping("/insert-womans")
+    @PostMapping("/insert/two")
     public void addWomans(){
         womanService.insertTwo();
     }
-
-
 
     /**
      * update a woman infomation by id
@@ -113,9 +115,21 @@ public class WomanController {
      * @param id
      */
     @DeleteMapping("/delete/id/{id}")
-    public void deletewoman(@PathVariable("id") Integer id){
+    public void deleteWoman(@PathVariable("id") Integer id){
         womanRepository.deleteById(id);
     }
 
+
+    /*********************************************************************************************************************/
+
+    /**
+     * get age of woman by id
+     * @param id
+     */
+    @GetMapping("/get_age/{id}")
+    public void getWomanAge(@PathVariable("id") Integer id ) throws Exception{
+        womanService.getAge(id);
+
+    }
 
 }
